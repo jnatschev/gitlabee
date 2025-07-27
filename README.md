@@ -1,1 +1,1 @@
-# gitlabee
+# ansible collection imig.gitlabee
