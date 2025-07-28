@@ -1,0 +1,10 @@
+---
+# tasks file for imig.gitlab.gitlabee_pull_newest_image
+
+- name: Podman pull newest gitlab-ee image
+  containers.podman.podman_image:
+    name: "{{ ansible_facts.gitlabee_newest_image.name }}"
+    pull: true
+    state: present
+    tag: "{{ ansible_facts.gitlabee_newest_image.tag }}"
+  when: ansible_facts.gitlabee_newer_image_exists is true

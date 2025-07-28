@@ -1,0 +1,15 @@
+---
+# tasks file for imig.gitlab.gitlabee_newer_image_exists
+- name: Initial set fact gitlabee_newer_image_exists to false
+  ansible.builtin.set_fact:
+    gitlabee_newer_image_exists: false
+    cacheable: true
+
+- name: Set fact `gitlabee_newer_image_exists` to true when newer gitlab-ee image exists
+  ansible.utils.update_fact:
+    updates:
+      - path: ansible_facts.gitlabee_newer_image_exists
+        value: true
+  when:
+    - ansible_facts.gitlabee_newest_image.version is
+      ansible.builtin.version(ansible_facts.gitlab_podman_container_info.version, '>')

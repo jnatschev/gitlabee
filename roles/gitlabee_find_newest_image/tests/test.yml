@@ -1,0 +1,12 @@
+---
+- name: Find newest gitlab-ee image and print
+  gather_facts: false
+  hosts: localhost
+
+  roles:
+    - imig.gitlab.gitlabee_find_newest_image
+
+  tasks:
+    - name: Print the retrieved newest gitlab-ee image data
+      ansible.builtin.debug:
+        var: ansible_facts.gitlabee_newest_image

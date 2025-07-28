@@ -1,0 +1,12 @@
+---
+- name: Test role `imig.gitlab.gitlabee_newer_image_exists`
+  gather_facts: false
+  hosts: fcos01.localdomain
+
+  roles:
+    - imig.gitlab.gitlabee_newer_image_exists
+
+  tasks:
+    - name: Print gitlab_new_images_exists
+      ansible.builtin.debug:
+        var: ansible_facts.gitlabee_newer_image_exists
