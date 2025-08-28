@@ -4,7 +4,7 @@
   hosts: localhost
 
   roles:
-    - imig.gitlab.gitlabee_find_newest_image
+    - imig.gitlabee.gitlabee_find_newest_image
 
   tasks:
     - name: Print the retrieved newest gitlab-ee image data

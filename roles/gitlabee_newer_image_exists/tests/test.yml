@@ -4,7 +4,7 @@
   hosts: fcos01.localdomain
 
   roles:
-    - imig.gitlab.gitlabee_newer_image_exists
+    - imig.gitlabee.gitlabee_newer_image_exists
 
   tasks:
     - name: Print gitlab_new_images_exists

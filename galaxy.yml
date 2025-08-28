@@ -6,7 +6,7 @@
 namespace: imig
 
 # The name of the collection. Has the same character restrictions as 'namespace'
-name: gitlab
+name: gitlabee
 
 # The version of the collection. Must be compatible with semantic versioning
 version: 1.0.0
@@ -22,7 +22,7 @@ authors:
 
 ### OPTIONAL but strongly recommended
 # A short summary description of the collection
-description: An ansible collection to manage aspects of GitLab Enterprise Edition (gitlab-ee) Self Managed running as a container
+description: An ansible collection to work out whether a newer docker image version of `gitlab-ee` exists and pull it.
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -46,16 +46,16 @@ tags:
 dependencies: {}
 
 # The URL of the originating SCM repository
-repository: https://github.com/jnatschev/gitlab/tree/main
+repository: https://github.com/jnatschev/gitlabee/tree/main
 
 # The URL to any online docs
-documentation: https://github.com/jnatschev/gitlab/wiki
+documentation: https://github.com/jnatschev/gitlabee/wiki
 
 # The URL to the homepage of the collection/project
-homepage: https://github.com/jnatschev/gitlab/wiki
+homepage: https://github.com/jnatschev/gitlabee/wiki
 
 # The URL to the collection issue tracker
-issues: https://github.com/jnatschev/gitlab/issues
+issues: https://github.com/jnatschev/gitlabee/issues
 
 # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This
