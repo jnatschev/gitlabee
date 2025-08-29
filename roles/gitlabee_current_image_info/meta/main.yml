@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 galaxy_info:
   author: John Natschev
-  description: A collection role to get the current gitlab-ee image id
+  description: A collection role to get relevant gitlab-ee current image information
   company: ""
 
   # If the issue tracker for your role is not on github, uncomment the

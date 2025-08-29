@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
-- name: Test role `imig.gitlabee.gitlabee_get_current_image_id`
+- name: Test role `imig.gitlabee.gitlabee_current_image_info`
   gather_facts: false
   hosts: fcos01.localdomain
 
   roles:
-    - gitlabee_get_current_image_id
+    - gitlabee_current_image_info
 
   tasks:
     - name: Debug `ansible_facts.gitlabee_current_image_id`
       ansible.builtin.debug:
-        var: ansible_facts.gitlabee_current_image_id
+        var: ansible_facts.gitlabee_current_image_info
