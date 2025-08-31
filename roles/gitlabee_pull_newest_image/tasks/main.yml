@@ -7,4 +7,5 @@
     pull: true
     state: present
     tag: "{{ ansible_facts.gitlabee_newest_image.tag }}"
+  register: gitlabee_pull_newest_image_result
   when: ansible_facts.gitlabee_newer_image_exists is true

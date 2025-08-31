@@ -1,34 +1,34 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 ---
-# tasks file for gitlabee_current_image_info
+# tasks file for gitlabee_inuse_image
 
 - name: Run `containers.podman.podman_image_info`
   containers.podman.podman_image_info:
   register: podman_image_information
 
-- name: Set fact `gitlabee_current_image_info`
+- name: Set fact `gitlabee_inuse_image`
   ansible.builtin.set_fact:
-    gitlabee_current_image_info: {}
+    gitlabee_inuse_image: {}
     cacheable: true
 
-- name: Update fact `gitlabee_current_image_info` with current gitlab-ee image id, imagename, tag, version
+- name: Update fact `gitlabee_inuse_image` with current gitlab-ee image id, imagename, tag, version
   ansible.utils.update_fact:
     updates:
-      - path: ansible_facts.gitlabee_current_image_info.id
+      - path: ansible_facts.gitlabee_inuse_image.id
         value:
           "{{
           podman_image_information | 
           community.general.json_query(\"images[?contains(RepoTags[0], 'gitlab')].Id\") |
           first 
           }}"
-      - path: ansible_facts.gitlabee_current_image_info.imagename
+      - path: ansible_facts.gitlabee_inuse_image.imagename
         value:
           "{{
           podman_image_information | 
           community.general.json_query(\"images[?contains(RepoTags[0], 'gitlab')].RepoTags[0]\") |
           first 
           }}"
-      - path: ansible_facts.gitlabee_current_image_info.tag
+      - path: ansible_facts.gitlabee_inuse_image.tag
         value:
           "{{ 
           podman_image_information |
@@ -37,7 +37,7 @@
           split(':') |
           last 
           }}"
-      - path: ansible_facts.gitlabee_current_image_info.version
+      - path: ansible_facts.gitlabee_inuse_image.version
         value:
           "{{
           podman_image_information | 

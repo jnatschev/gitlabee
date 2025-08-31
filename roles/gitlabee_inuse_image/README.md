@@ -1,4 +1,4 @@
-imig.gitlabee.gitlabee_get_current_gitlabee_image_id
+imig.gitlabee.gitlabee_inuse_image
 =========
 
 A brief description of the role goes here.

@@ -12,4 +12,4 @@
         value: true
   when:
     - ansible_facts.gitlabee_newest_image.version is
-      ansible.builtin.version(ansible_facts.gitlabee_current_image_info.version, '>')
+      ansible.builtin.version(ansible_facts.gitlabee_inuse_image.version, '>')
