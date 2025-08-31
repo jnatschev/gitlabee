@@ -1,0 +1,7 @@
+---
+- name: A play to test collection `imig.gitlabee` role `imig.gitlabee.gitlabee_pull_newest_image`
+  gather_facts: false
+  hosts: fcos01.localdomain
+
+  roles:
+    - imig.gitlabee.gitlabee_pull_newest_image

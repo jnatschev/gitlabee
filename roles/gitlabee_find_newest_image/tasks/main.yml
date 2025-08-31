@@ -1,0 +1,44 @@
+---
+# tasks file for imig.gitlab.gitlabee_find_newest_image
+
+- name: The `gitlabee_find_newest_image` tasks to be run as connection local and delegated to localhost
+  connection: local
+  delegate_to: localhost
+  block:
+    - name: Execute `skopeo list-tags` to retrieve a list gitlab-ee image tags
+      ansible.builtin.command:
+        cmd: skopeo list-tags --no-creds --override-os=linux --override-arch=amd64 docker://"{{ gitlabee_find_newest_image_imagename }}"
+      register: skopeo_listtags_gitlabee
+      changed_when: skopeo_listtags_gitlabee.stdout != ""
+
+    - name: Set_fact `gitlabee_newest_image_tag` from values in `skopeo_listtags_gitlabee`
+      ansible.builtin.set_fact:
+        gitlabee_newest_image_tag:
+          "{{
+             skopeo_listtags_gitlabee.stdout |
+             from_json |
+             community.general.json_query('Tags[*]') |
+             select('match', '^[1-9]') |
+             list |
+             community.general.version_sort |
+             last
+           }}"
+
+    - name: Set_fact gitlabee_newest_version with the newest gitlab-ee version
+      ansible.builtin.set_fact:
+        gitlabee_newest_image_version: "{{ gitlabee_newest_image_tag | ansible.builtin.split('-') | first }}"
+
+    - name: Set fact empty dictionary gitlab_newest_image
+      ansible.builtin.set_fact:
+        gitlabee_newest_image: {}
+        cacheable: true
+
+    - name: Update fact, `ansible_facts.newest_gitlabee_image`, with image name, tag, and version
+      ansible.utils.update_fact:
+        updates:
+          - path: ansible_facts.gitlabee_newest_image.name
+            value: "{{ gitlabee_find_newest_image_imagename }}"
+          - path: ansible_facts.gitlabee_newest_image.tag
+            value: "{{ gitlabee_newest_image_tag }}"
+          - path: ansible_facts.gitlabee_newest_image.version
+            value: "{{ gitlabee_newest_image_version }}"

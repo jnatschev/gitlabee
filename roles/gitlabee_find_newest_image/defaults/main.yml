@@ -1,0 +1,3 @@
+---
+# defaults file for imig.gitlab.gitlabee_find_newest_image
+gitlabee_find_newest_image_imagename: docker.io/gitlab/gitlab-ee
